@@ -1,0 +1,90 @@
+﻿@model IEnumerable<StocksInfo.Models.StockModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="back-color">
+    <h1 class="">Top 20 stocks with target price above 50%</h1>
+    <h4 style="color:aqua;">@DateTime.Now</h4>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Industry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarketCap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Change)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Volume)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            var change = item.Change.Replace("%", "").AsDecimal();
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelIelse=> item.CompanyID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ticker)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sector)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Industry)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MarketCap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td  class="@(change > 0 ? "green-price" : change < 0 ? "red-price":"") ">
+                    @Html.DisplayFor(modelItem => item.Change)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Volume)
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+    
+</div>
